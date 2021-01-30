@@ -1,4 +1,7 @@
-      <!-- Navbar -->
+ {% load cart_template_tag %}
+
+ 
+ <!-- Navbar -->
       <nav class="navbar fixed-top navbar-expand-lg navbar-light white scrolling-navbar">
         <div class="container">
     
@@ -30,9 +33,9 @@
     
             <!-- Right -->
             <ul class="navbar-nav nav-flex-icons">
-              <li class="nav-item">
-                <a class="nav-link waves-effect">
-                  <span class="badge red z-depth-1 mr-1"> 1 </span>
+              <li class="nav-item">  
+                <a class="nav-link waves-effect" href="{%  url 'core:cart' %}">
+                  <span class="badge red z-depth-1 mr-1 cart-item-num"  >{{ request.user|cart_counter }} </span>
                   <i class="fas fa-shopping-cart"></i>
                   <span class="clearfix d-none d-sm-inline-block"> Cart </span>
                 </a>

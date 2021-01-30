@@ -6,7 +6,10 @@ from store import views
 app_name ='core'
 urlpatterns = [
     path('',views.home_view, name='home'),
-    path('product_detail/<int:pk>', views.product_detail, name="product_detail")
+    path('product_detail/<int:pk>', views.product_detail, name="product_detail"),
+    path('cart', views.cart, name="cart"),
+    path('checkout', views.checkout_summary, name="checkout"),
+    path('update-cart', views.updateitem, name='update-cart')
 
 ]
 if settings.DEBUG:
