@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+{% include 'components/nav.html' %}
+<div class="mt-70">
+    <div class="d-flex align-items-center h-100">
+      <div class="container text-center py-5">
+      
+      </div>
+    </div>
+  </div>
+
+<div class="container">
+    <div class="mt-10 mb-4"> 
+        
+ 
+
+    <h1> Searched for : {{ product_name }} </h1>
+   
+    {% if products %}
+
+    {% for items in products %}
+      
+    <section class="mt-5 mb-4">
+
+      <!--Grid row-->
+      <div class="row">
+
+
+        <!--Grid column-->
+        <div class="col-lg-4">
+
+          <!-- Card -->
+          <div class="card mb-4">
+            <div class="card-body">
+              <div class="view overlay">
+                <img src="{{ items.imageURL }}" class="card-img-top"
+                  alt="">
+                <a href="{{items.get_absolute_url}}">
+                  <div class="mask rgba-white-slight"></div>
+                </a>
+              </div>
+
+           
+
+              <div class="card-body text-center">
+                <!--Category & Title-->
+                <a href="{{items.get_absolute_url}}" class="grey-text">
+                  <h5>{{ items.name }}</h5>
+                </a>
+                
+                <h5>
+                  <strong>
+                    <a href="{{ items.get_absolute_url }}" class="dark-grey-text">{{ items.category.name}}
+                      <!-- <span class="badge badge-pill danger-color">NEW</span> -->
+                    </a>
+                  </strong>
+                </h5>
+
+                <h4 class="font-weight-bold blue-text">
+                  <strong>{{ items.price|floatformat:2 }}N</strong>
+                </h4>
+
+              </div>
+
+
+            </div>
+          </div>
+        </div>
+        <!--Grid column-->
+
+      </div>
+      <!--Grid row-->
+
+    </section>
+    {% endfor %}
+
+    {% else %}
+    <h1><strong>Not Found , Please Try Searching Another Product Name</strong> </h1>
+
+
+    {% endif %}
+
+
+
+  
+
+    </div>
+
+</div>
+
+{% include 'components/footer.html' %}
+
+{% endblock %}
+

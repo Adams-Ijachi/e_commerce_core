@@ -9,7 +9,9 @@ urlpatterns = [
     path('product_detail/<int:pk>', views.product_detail, name="product_detail"),
     path('cart', views.cart, name="cart"),
     path('checkout', views.checkout_summary, name="checkout"),
-    path('update-cart', views.updateitem, name='update-cart')
+    path('update-cart', views.updateitem, name='update-cart'),
+    path('products', views.products_page, name='products'),
+    path('s/', views.search, name="search")
 
 ]
 if settings.DEBUG:

@@ -66,8 +66,8 @@
 
                           <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus update-item-quantity" data-product="{{item.product.id}}" data-action="quantity-add"><i class="fas fa-plus"></i></button>
                         </div>
-                        <small id="item-quantity" class="form-text text-muted text-center">
-                          (Note, {{ item.quantity }} piece)
+                        <small  class="form-text text-muted text-center">
+                          (Note, <span id="item-quantity">{{ item.quantity }}</span> piece)
                         </small>
                       </div>
                     </div>
@@ -76,7 +76,7 @@
                         <a  type="button" data-action="remove-product" data-product="{{ item.product.id}}"  class="card-link-secondary small text-primary text-uppercase mr-3 update-cart-list"><i class="fas fa-trash-alt mr-1"></i> Remove item </a>
                      
                       </div>
-                      <p class="mb-0"><span><strong id="item-price" >N{{ item.get_total |floatformat:2}}</strong></span></p>
+                      <p class="mb-0"><span>N<strong class="item-price" >{{ item.get_total |floatformat:2}}</strong></span></p>
                     </div>
                   </div>
                 </div>

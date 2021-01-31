@@ -70,9 +70,26 @@ const cart_backend_request = (url,productId,action, mythis) =>{
 
         }
         else if(response.action ==='quantity-upadate'){
+            console.log(response)
+            if(response.orderitem_quantity === 0){
+                var div_table_data = mythis.parents('div.row.mb-4')
+
+                div_table_data.remove()
+            }
+            if ( response.orderitem_count==0 ) {
+       
+                $("#checkout-btn").addClass("disabled");
+             }
 
             mythis.parents('div.item-price-quantity').find(".item-price").html(response.orderitem_price)
             mythis.parents('div.item-price-quantity').find("#item-quantity").html(response.orderitem_quantity)
+
+            cart_count_divs = document.getElementsByClassName( 'cart-item-num' );
+
+            [].slice.call( cart_count_divs  ).forEach(function ( cart_count_div  ) {
+                cart_count_div.innerHTML = response.orderitem_count;
+            });
+            
 
 
 
