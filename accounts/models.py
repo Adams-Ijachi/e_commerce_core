@@ -7,7 +7,7 @@ from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseU
 
 class CustommAccountManager(BaseUserManager):
     def create_superuser(self, email, first_name, last_name, password, **other_fields):
-
+        print(password)
         other_fields.setdefault('is_staff',  True)
         other_fields.setdefault('is_superuser',  True)
         other_fields.setdefault('is_active',  True)
@@ -21,28 +21,21 @@ class CustommAccountManager(BaseUserManager):
         
         return self.create_user(email, first_name, last_name, password, **other_fields)
 
-    def create_agent(self, email, first_name, last_name, password, **other_fields):
-        if not email:
-            raise ValueError(_('You must provide an email address'))
-        other_fields.setdefault('is_agent',  True)
-        other_fields.setdefault('is_active', True)
 
-        email = self.normalize_email(email)
-        user = self.model( email=email, first_name = first_name,last_name=last_name, **other_fields)
-        user.set_password(password)
-        user.save()
-        return user
-
-    def create_user (self, email, first_name, last_name, password, **other_fields):
+    def create_user(self, email, first_name, last_name, password=None, **other_fields):
 
         if not email:
             raise ValueError(_('You must provide an email address'))
         other_fields.setdefault('is_active', True)
+        other_fields.setdefault('is_customer', True)
         email = self.normalize_email(email)
-        user = self.model( email=email, first_name = first_name,last_name=last_name, **other_fields)
+        user = self.model( email=email, first_name = first_name,last_name=last_name,**other_fields)
         user.set_password(password)
-        user.save()
+        print(password)
+        user.save(using=self._db)
         return user
+      
+        
 
 
 class User(AbstractBaseUser, PermissionsMixin):
@@ -55,6 +48,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_active = models.BooleanField(default=False)
     is_customer = models.BooleanField(default=False)
     is_agent = models.BooleanField(default=False)
+    date_joined = models.DateTimeField(auto_now_add=True)
 
     objects = CustommAccountManager()
 

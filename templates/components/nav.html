@@ -50,12 +50,22 @@
                   <i class="fab fa-twitter"></i>
                 </a>
               </li>
+              {% if user.is_authenticated %}
               <li class="nav-item">
-                <a href="https://github.com/mdbootstrap/bootstrap-material-design" class="nav-link border border-light rounded waves-effect"
-                  target="_blank">
+                <a href="{% url 'accounts:login' %}" class="nav-link border border-light rounded waves-effect"
+                 >
+                  <i class="fab fa-github mr-2"></i>Logout
+                </a>
+              </li>
+
+              {% else %}
+              <li class="nav-item">
+                <a href="{% url 'accounts:login' %}" class="nav-link border border-light rounded waves-effect"
+                 >
                   <i class="fab fa-github mr-2"></i>Login
                 </a>
               </li>
+              {% endif %}
             </ul>
     
           </div>

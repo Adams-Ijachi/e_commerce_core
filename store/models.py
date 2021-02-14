@@ -26,7 +26,7 @@ class Category(models.Model):
 class Products(models.Model):
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, blank=True, null=True)
     name = models.CharField(max_length=100)
-    image = models.ImageField(verbose_name='Product_Image',upload_to='img/products', null=True, blank=True)
+    image = models.ImageField(verbose_name='Product_Image',upload_to='img/products/', null=True, blank=True)
     price = models.FloatField()
     description = models.TextField()
     updated_at = models.DateTimeField(auto_now=True,)
@@ -92,12 +92,12 @@ pre_save.connect(Order.pre_save_create_order_id, sender=Order)
 
 class OrderItem(models.Model):
     product = models.ForeignKey(Products, on_delete=models.SET_NULL, blank=True, null=True)
-    order = models.ForeignKey(Order, on_delete=models.CASCADE, blank=True, null=True)
+    order = models.ForeignKey(Order, on_delete=models.CASCADE)
     quantity = models.IntegerField(default=1)
     date_added = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.product.name
+        return self.product.name 
     
     @property
     def get_total(self):
@@ -105,12 +105,13 @@ class OrderItem(models.Model):
         return total 
 
 class ShippingAddress(models.Model):
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, blank=True, null=True)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, blank=True, null=True)
     address = models.CharField(max_length=200,verbose_name="Address")
     apartment_address = models.CharField(max_length=200, verbose_name="Address 2", blank=True)
 
     def __str__(self):
-        return self.user.email
+        
+        return self.user.email 
 
 
 

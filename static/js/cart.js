@@ -29,7 +29,15 @@ const cart_backend_request = (url,productId,action, mythis) =>{
     $.ajax({
         url:url,
         type:'POST',
-        data:{productId:productId,action:action}
+        data:{productId:productId,action:action},
+        statusCode: {
+            403: function() {
+                window.location.href ="/accounts/login"
+            },
+            401: function() {
+                window.location.href ="/accounts/login"
+            }
+          }
 
      }).done( (response)=>{
         if( response.action === 'cart-update'){
@@ -103,7 +111,8 @@ const cart_backend_request = (url,productId,action, mythis) =>{
         }
         
      }).fail((response)=>{
-         alert(response)
+        console.log('something went wrong , try again later')
+         
      })
 }
 
@@ -115,8 +124,7 @@ $('.update-cart').click(
 
     var productId = this.dataset.product
     var action = this.dataset.action
-    var url = "/update-cart";
-    console.log(url)
+    var url = "/home/update-cart"
     cart_backend_request(url,productId,action,'')
 
 });
@@ -127,7 +135,7 @@ $('.update-cart-list').click(function(){
     var action = this.dataset.action
     var productId = this.dataset.product
     
-    var url = "/update-cart";
+    var url = "/home/update-cart";
 
     cart_backend_request(url,productId,action,$(this))
     
@@ -143,7 +151,7 @@ $('.update-item-quantity').click(function(){
     var action = this.dataset.action
     var productId = this.dataset.product
 
-    var url = "/update-cart";
+    var url = "/home/update-cart";
 
     cart_backend_request(url,productId,action,$(this))
 
