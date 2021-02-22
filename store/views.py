@@ -48,7 +48,6 @@ def checkout_summary(request):
             obj = form.save(commit=False)
             obj.user = request.user
             obj.save() 
-            print(obj)
             order = get_object_or_404(Order,  customer=request.user, completed=False, order_reviewed=False, order_status='C')
             order.billing_address = obj
             order.order_status = 'P'

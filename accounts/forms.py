@@ -8,11 +8,11 @@ from random import choice
 class UserCreateForm(UserCreationForm):
     username = None
     email = forms.EmailField(widget=forms.TextInput(attrs={'class':'form-control'}))
-    password1 = forms.CharField(widget=forms.PasswordInput(attrs={'class':'form-control', 'autocomplete':'password'}))
-    password2 = forms.CharField(widget=forms.PasswordInput(attrs={'class':'form-control','autocomplete':'confirm-password'}))
+    password1 = forms.CharField(label='Password',widget=forms.PasswordInput(attrs={'class':'form-control', 'autocomplete':'password',}))
+    password2 = forms.CharField(label='Confirm Password',widget=forms.PasswordInput(attrs={'class':'form-control','autocomplete':'confirm-password'}))
     class Meta(UserCreationForm.Meta):
         model = User
-        fields = UserCreationForm.Meta.fields + ( 'email', 'password1','first_name', 'last_name')
+        fields = UserCreationForm.Meta.fields + ( 'email','first_name', 'last_name','password1')
 
     def __init__(self, *args, **kwargs):
         super(UserCreateForm, self).__init__(*args, **kwargs)

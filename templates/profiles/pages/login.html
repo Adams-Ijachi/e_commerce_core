@@ -2,12 +2,13 @@
 
 
 {% block content %}
-<form method="POST">
-    {% csrf_token %}
 
-<div id="loginbox">            
+    
 
-    <form id="loginform" class="form-vertical" action="index.html">
+<div id="loginbox" style="margin-top:80px">            
+
+    <form id="loginform" class="form-vertical" method="POST">
+        {% csrf_token %}
 
          <div class="control-group normal_text"> <h3>E-commerce</h3></div>
 
@@ -32,6 +33,9 @@
                 </div>
             </div>
         </div>
+
+                       
+    
         <!-- <div class="control-group">
             <div class="controls">
                 <div class="main_input_box">
@@ -40,7 +44,9 @@
             </div>
         </div> -->
         {% endfor %}
+  
         <div class="form-actions">
+            <span class="pull-left"><a href="{% url 'accounts:register' %}" class="flip-link btn btn-info" id="to-login">Register</a></span>
             <span class="pull-right"><button type="submit"  class="btn btn-success" /> Login</button></span>
         </div>
     </form>
@@ -49,4 +55,3 @@
 
 {% endblock %}
 
-</form>

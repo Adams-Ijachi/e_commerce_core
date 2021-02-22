@@ -1,0 +1,19 @@
+  <!--top-Header-menu-->
+  <div id="user-nav" class="navbar navbar-inverse">
+
+<form method="POST" action='{% url "accounts:logout" %}'>
+  {% csrf_token %}
+    <ul class="nav">
+      <li  class="dropdown" id="profile-messages" ><a title="" href="#" data-toggle="dropdown" data-target="#profile-messages" class="dropdown-toggle"><i class="icon icon-user"></i>  <span class="text">Welcome {{ request.user.first_name }}</span><b class="caret"></b></a>
+        <ul class="dropdown-menu">
+          <li><a href="#"><i class="icon-user"></i> My Profile</a></li>
+          <li class="divider"></li>
+           <li> <a> <button class="btn" style="border: none ;">  <i class="icon-key"></i> <small> Log Out</small>  </button> </a></li>
+           <li class="divider"></li>
+   
+        </ul>
+      </li>
+    </ul>
+</form>
+  </div>
+  <!--close-top-Header-menu-->

@@ -7,16 +7,19 @@ from .models import *
 
 class EmployeeAdmin(UserAdmin):
     fieldsets = (
-        (None, {'fields': ('email', 'username', 'first_name','password')}),
-        ('Permissions', {'fields': ('is_staff', 'is_active')}),
+        (None, {'fields': ('email', 'first_name','password')}),
+        ('Permissions', {'fields': ('is_staff', 'is_active', 'is_customer')}),
        
     )
     add_fieldsets = (
         (None, {
             'classes': ('wide',),
-            'fields': ('email', 'username', 'first_name','last_name', 'password1', 'password2', 'is_active', 'is_staff')}
+            'fields': ('email', 'username''first_name','last_name', 'password1', 'password2', 'is_active', 'is_staff')}
          ),
     )
+
+    list_display = ( 'email', 'first_name', 'last_name', 'is_staff',
+                'is_active', 'is_customer')
    
  
     pass
